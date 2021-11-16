@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
+import * as  React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Cliente from './screens/Cliente';
+import Home from './screens/Home';
+import Contato from './screens/Contato';
+import Portifolio from './screens/Portifolio';
+
+//  Empilhar tela 
 export default function App() {
+
+  const Pilha = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Pilha.Navigator initialRouteName="Home">
+
+        <Pilha.Screen name="Home" component={Home} options={{headerTitleAlign:'center',headerTintColor:'cyan',headerStyle:{backgroundColor:'lightpurple',}}} />
+        <Pilha.Screen name="Cliente" component={Cliente} />
+        <Pilha.Screen name="Contato" component={Contato} />
+        <Pilha.Screen name="Portifolio" component={Portifolio} />
+
+      </Pilha.Navigator>
+
+    </NavigationContainer>
+
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
